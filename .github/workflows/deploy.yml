@@ -28,6 +28,18 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: yarn install --immutable
+
+    - name: Create pages directory
+        run: |
+          mkdir -p pages
+
+      - name: Install pymongo
+        run: |
+          pip install pymongo[srv]
+
+      - name: Write pages
+        run: |
+          python ascr/pages ${{ secrets.MONGO_URL }}
     
     - name: Deploy with gh-pages
       run: |
