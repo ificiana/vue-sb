@@ -12,8 +12,11 @@ parser.add_argument('database', nargs="?", type=str,
 args = parser.parse_args()
 
 client = pymongo.MongoClient(f"{args.mongo_url}")
+print("Connected to MongoDB")
 db = client[args.database]
+print("Connected to database:", db.name)
 for col in db.list_collection_names():
+    print("Found col:", col)
     _dir = Path("pages/")
     if col != "top":
         _dir = _dir.joinpath(col)
@@ -23,3 +26,4 @@ for col in db.list_collection_names():
         d = {k: v for k, v in doc.items() if k not in ("id", "_id")}
         with _dir.joinpath(f'{doc["id"]}.vue').open('w') as file:
             file.write(d.get("text", ""))
+            print("Written page for", doc["id"])

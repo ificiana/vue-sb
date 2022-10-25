@@ -40,6 +40,8 @@ jobs:
     - name: Write pages
       run: |
         python ascr/pages ${{ secrets.MONGO_URL }}
+        ls
+        ls pages
   
     - name: Deploy with gh-pages
       run: |
