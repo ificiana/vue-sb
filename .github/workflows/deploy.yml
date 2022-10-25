@@ -31,11 +31,9 @@ jobs:
     
     - name: Deploy with gh-pages
       run: |
-        git remote set-url origin https://github.com/ificiana/vue-sb.git
-        git config --global user.email "ificiana@gmail.com"
-        git config --global user.name "Ificiana"
-        yarn deploy
+        git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/ificiana/vue-sb.git
+        npx gh-pages -d build -u "github-actions-bot <support+actions@github.com>"
       env:
-        GITHUB_TOKEN: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
 #     - run: npm test
