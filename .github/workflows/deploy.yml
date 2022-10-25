@@ -31,7 +31,7 @@ jobs:
     
     - name: Deploy with gh-pages
       run: |
-        git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/vue-sb.git
+        git remote add https://github.com/ificiana/vue-sb.git
         yarn deploy
       env:
         GITHUB_TOKEN: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
