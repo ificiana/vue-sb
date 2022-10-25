@@ -25,5 +25,7 @@ for col in db.list_collection_names():
     for doc in col.find():
         d = {k: v for k, v in doc.items() if k not in ("id", "_id")}
         with _dir.joinpath(f'{doc["id"]}.vue').open('w') as file:
-            file.write(d.get("text", ""))
+            text = d.get("text", "")
+            print(text)
+            file.write(text)
             print("Written page for", doc["id"])

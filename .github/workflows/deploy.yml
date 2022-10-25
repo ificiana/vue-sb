@@ -36,14 +36,16 @@ jobs:
     - name: Install pymongo
       run: |
         pip install pymongo[srv]
-
-    - name: Write pages
-      run: |
-        python ascr/pages ${{ secrets.MONGO_URL }}
-        ls
-        ls pages
-  
+    
+    - pages:
+      - name: Write pages
+        run: |
+          python ascr/pages ${{ secrets.MONGO_URL }}
+          ls
+          ls pages
+    
     - name: Deploy with gh-pages
+      needs: build.steps.pages
       run: |
         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/ificiana/vue-sb.git
         yarn deploy -- -u "github-actions-bot <support+actions@github.com>"
