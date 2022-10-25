@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{162:function(n,o,e){"use strict";e.r(o);var t=e(32),component=Object(t.a)({},(function(){return(0,this._self._c)("h1",[this._v("This page was loaded from MongoDB!")])}),[],!1,null,null,null);o.default=component.exports}}]);
