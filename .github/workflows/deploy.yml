@@ -41,9 +41,9 @@ jobs:
       run: |
         python ascr/pages ${{ secrets.MONGO_URL }}
     
-    - run: |
-        ls
-        ls pages
+    # - run: |
+    #     ls
+    #     ls pages
     
     - name: Deploy with gh-pages
       run: |
