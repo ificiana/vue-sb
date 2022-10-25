@@ -29,17 +29,11 @@ jobs:
         cache: 'npm'
     - run: yarn install --immutable
     
-    - name: Deploy
+    - name: Deploy with gh-pages
       run: |
-        git clone git@github.com:ificiana/vue-sb.git
-        git config --global user.name $user_name
-        git config --global user.email $user_email
-        git remote set-url origin https://${github_token}@github.com/${repository}
-        CI=false && yarn deploy
+        git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/vue-sb.git
+        npx gh-pages -d build -u "github-actions-bot <support+actions@github.com>"
       env:
-        user_name: 'github-actions[bot]'
-        user_email: 'github-actions[bot]@users.noreply.github.com'
-        github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
-        repository: ${{ github.repository }}
+        GITHUB_TOKEN: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
     
 #     - run: npm test
