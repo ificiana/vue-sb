@@ -30,17 +30,17 @@ jobs:
     - run: yarn install --immutable
 
     - name: Create pages directory
-        run: |
-          mkdir -p pages
+      run: |
+        mkdir -p pages
 
-      - name: Install pymongo
-        run: |
-          pip install pymongo[srv]
+    - name: Install pymongo
+      run: |
+        pip install pymongo[srv]
 
-      - name: Write pages
-        run: |
-          python ascr/pages ${{ secrets.MONGO_URL }}
-    
+    - name: Write pages
+      run: |
+        python ascr/pages ${{ secrets.MONGO_URL }}
+  
     - name: Deploy with gh-pages
       run: |
         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/ificiana/vue-sb.git
