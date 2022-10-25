@@ -31,6 +31,7 @@ jobs:
     
     - name: Deploy
       run: |
+        git clone git@github.com:ificiana/vue-sb.git
         git config --global user.name $user_name
         git config --global user.email $user_email
         git remote set-url origin https://${github_token}@github.com/${repository}
